@@ -34,7 +34,7 @@ export class Task {
   }
 
   public get id() {
-    return this.id;
+    return this.props.id;
   }
 
   public set user_id(user_id: string) {
