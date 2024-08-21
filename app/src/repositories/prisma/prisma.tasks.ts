@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { TasksRepository } from '../tasks.repository';
 import { PrismaService } from 'src/database/prisma.service';
-import { PrismaTaskMapper } from 'src/helpers/mapper';
 import { Task } from 'src/entities/task';
+import { TaskMapper } from 'src/helpers/mapper/task';
 
 @Injectable()
 export class PrismaTasksRepository implements TasksRepository {
   constructor(private prisma: PrismaService) {}
 
   async create(task: Task) {
-    const raw = PrismaTaskMapper.toPrisma(task);
+    const raw = TaskMapper.toPrisma(task);
     const new_task = await this.prisma.task.create({
       data: raw,
     });
-    return PrismaTaskMapper.toDomain(new_task);
+    return TaskMapper.toDomain(new_task);
   }
 
   async findById(id: string) {
@@ -22,7 +22,7 @@ export class PrismaTasksRepository implements TasksRepository {
         id,
       },
     });
-    return PrismaTaskMapper.toDomain(task);
+    return TaskMapper.toDomain(task);
   }
 
   async findMany(user_id: string) {
@@ -31,18 +31,18 @@ export class PrismaTasksRepository implements TasksRepository {
         user_id,
       },
     });
-    return tasks.map(PrismaTaskMapper.toDomain);
+    return tasks.map(TaskMapper.toDomain);
   }
 
   async update(task: Task) {
-    const raw = PrismaTaskMapper.toPrisma(task);
+    const raw = TaskMapper.toPrisma(task);
     const updated_task = await this.prisma.task.update({
       where: {
         id: raw.id,
       },
       data: raw,
     });
-    return PrismaTaskMapper.toDomain(updated_task);
+    return TaskMapper.toDomain(updated_task);
   }
 
   async delete(id: string) {
