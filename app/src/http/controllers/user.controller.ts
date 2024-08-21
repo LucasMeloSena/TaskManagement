@@ -5,7 +5,7 @@ import { AuthenticateUseCase } from 'src/use-cases/user/authenticate';
 import { UserMapper } from 'src/helpers/mapper/user';
 
 @Controller('user')
-export class TasksController {
+export class UsersController {
   constructor(
     private createUser: CreateUserUseCase,
     private authenticateUser: AuthenticateUseCase,
