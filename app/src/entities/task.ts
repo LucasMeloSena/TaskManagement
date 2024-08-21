@@ -8,12 +8,12 @@ export enum TaskStatus {
 }
 
 export interface TaskProps {
-  id?: string | null;
+  id: string;
   user_id: string;
   title: string;
   description: string;
-  status?: TaskStatus | null;
-  created_at?: Date | null;
+  status: TaskStatus;
+  created_at: Date;
 }
 
 export class Task {
