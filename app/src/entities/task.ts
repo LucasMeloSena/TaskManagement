@@ -1,11 +1,6 @@
+import { TaskStatus } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/replace';
-
-export enum TaskStatus {
-  Pending = 'PENDING',
-  InProgress = 'IN_PROGRESS',
-  Done = 'DONE',
-}
 
 export interface TaskProps {
   id: string;
@@ -29,7 +24,7 @@ export class Task {
       ...props,
       id: props.id ?? randomUUID(),
       created_at: props.created_at ?? new Date(),
-      status: props.status ?? TaskStatus.Pending,
+      status: props.status ?? TaskStatus.PENDING,
     };
   }
 
@@ -63,6 +58,10 @@ export class Task {
 
   public get status(): TaskStatus {
     return this.props.status;
+  }
+
+  public changeStatus(status: TaskStatus) {
+    this.props.status = status;
   }
 
   public get created_at(): Date {
