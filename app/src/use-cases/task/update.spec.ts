@@ -8,7 +8,7 @@ describe('Update Task', () => {
   const sut = new UpdateTaskStatusUseCase(taskRepository);
   const createTaskUseCase = new CreateTaskUseCase(taskRepository);
 
-  it('should be able to find tasks', async () => {
+  it('should be able to update a task', async () => {
     const { task } = await createTaskUseCase.execute({
       user_id: 'user-01',
       title: 'Task Title',
