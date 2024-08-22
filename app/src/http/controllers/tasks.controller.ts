@@ -25,17 +25,23 @@ export class TasksController {
 
   @Post()
   async create(@Body() body: CreateTaskBody) {
-    const { user_id, title, description } = body;
+    try {
+      const { user_id, title, description } = body;
 
-    const { task } = await this.createTask.execute({
-      user_id,
-      title,
-      description,
-    });
+      const { task } = await this.createTask.execute({
+        user_id,
+        title,
+        description,
+      });
 
-    return {
-      task: TaskMapper.toHTTP(task),
-    };
+      return {
+        task: TaskMapper.toHTTP(task),
+      };
+    } catch (err) {
+      return {
+        message: (err as Error).message,
+      };
+    }
   }
 
   @Get(':user_id')
