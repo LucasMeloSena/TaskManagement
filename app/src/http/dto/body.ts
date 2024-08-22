@@ -1,5 +1,5 @@
 import { TaskStatus } from '@prisma/client';
-import { IsEnum, IsNotEmpty, IsUUID, Length } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsUUID, Length } from 'class-validator';
 
 export class CreateTaskBody {
   @IsNotEmpty()
@@ -22,7 +22,7 @@ export class UpdateTaskBody {
 
 export class CreateUserBody {
   @IsNotEmpty()
-  @IsUUID()
+  @IsEmail()
   email: string;
 
   @IsNotEmpty()

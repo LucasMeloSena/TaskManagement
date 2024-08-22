@@ -22,6 +22,7 @@ export class PrismaUsersRepository implements UserRepository {
         email,
       },
     });
+    if (!user) return null;
     return UserMapper.toDomain(user);
   }
 }
