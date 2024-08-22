@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { compare } from 'bcryptjs';
 import { User } from 'src/entities/user';
 import { UserRepository } from 'src/repositories/users.repository';
@@ -11,6 +12,7 @@ interface AuthenticateUseCaseResponse {
   user: User;
 }
 
+@Injectable()
 export class AuthenticateUseCase {
   constructor(private usersRepository: UserRepository) {}
 

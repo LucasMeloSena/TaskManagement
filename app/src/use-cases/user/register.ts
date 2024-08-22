@@ -1,6 +1,7 @@
 import { hash } from 'bcryptjs';
 import { User } from '../../entities/user';
 import { UserRepository } from '../../repositories/users.repository';
+import { Injectable } from '@nestjs/common';
 
 interface CreateUserUseCaseRequest {
   email: string;
@@ -11,6 +12,7 @@ interface CreateUserUseCaseResponse {
   user: User;
 }
 
+@Injectable()
 export class CreateUserUseCase {
   constructor(private usersRepository: UserRepository) {}
 
