@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { CreateUserBody } from '../dto/body';
 import { CreateUserUseCase } from 'src/use-cases/user/register';
 import { AuthenticateUseCase } from 'src/use-cases/user/authenticate';
@@ -26,6 +26,7 @@ export class UsersController {
   }
 
   @Post('/authenticate')
+  @HttpCode(200)
   async authenticate(@Body() body: CreateUserBody) {
     const { email, password } = body;
     const { user } = await this.authenticateUser.execute({ email, password });
